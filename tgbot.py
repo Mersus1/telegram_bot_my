@@ -4,17 +4,17 @@ import requests
 import sqlite3
 
             # Разовое напоминание
-            if time == now:
+        if time == now:
                 bot.send_message(user_id, f"🔔 Напоминание: {text}")
                 cursor.execute("DELETE FROM reminders WHERE id = ?", (rem_id,))
                 conn.commit()
 
             # Каждый час (на 0-й минуте)
-            elif repeat == 1 and datetime.now().minute == 0:
+        elif repeat == 1 and datetime.now().minute == 0:
                 bot.send_message(user_id, f"🔔 Напоминание (каждый час): {text}")
 
             # Каждый день (в 09:00)
-            elif repeat == 2 and datetime.now().hour == 9 and datetime.now().minute == 0:
+        elif repeat == 2 and datetime.now().hour == 9 and datetime.now().minute == 0:
                 bot.send_message(user_id, f"🔔 Напоминание (каждый день): {text}")
 
         text = message.text.lower().replace("напомни", "").strip()
